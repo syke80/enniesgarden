@@ -1,0 +1,160 @@
+.page_default .why-better {
+	margin-top: 2em;
+}
+
+.page_default .why-better ul {
+	padding: 0;
+	text-align: center;
+}
+
+.page_default .why-better ul li {
+	vertical-align: text-top;
+	display: inline-block;
+	width: 8em;
+	margin: 0 1em;
+	text-align: center;
+	color: #999999;
+	line-height: 1.2em;
+}
+
+.page_default .why-better ul li:before {
+	font-size: 0.9em;
+	content: '';
+	background-position: center;
+	background-size: 2.5em;
+	background-repeat: no-repeat;
+	display: block;
+	width: 6em;
+	height: 6em;
+	margin: 0 auto;
+	border-radius: 6em;
+	background-color: #ffffff;
+	margin-bottom: 0.5em;
+}
+
+.page_default .why-better ul li:nth-child(1):before {
+	background-image: url(/content/sites/_ennies-garden-www3/images/100-percent.jpg);
+}
+
+.page_default .why-better ul li:nth-child(2):before {
+	background-image: url(/content/sites/_ennies-garden-www3/images/made-from-real-fruit.jpg);
+}
+
+.page_default .why-better ul li:nth-child(3):before {
+	background-image: url(/content/sites/_ennies-garden-www3/images/made-in-england.jpg);
+}
+.page_default .why-better ul li:nth-child(4):before {
+	background-image: url(/content/sites/_ennies-garden-www3/images/no-added-preservative.jpg);
+}
+
+footer {
+	font-size: 0.8em;
+	line-height: 1.6em;
+	margin-top: -20px;
+}
+
+.page_index footer {
+	margin-top: -50px;
+}
+
+footer .top {
+	background: url(/content/sites/_ennies-garden-www3/images/footer.png) top center repeat-x;
+	height: 170px;
+	opacity: 0.14;
+}
+footer .body {
+	background: rgba(0, 0, 0, 0.14);
+	padding-bottom: 1em;
+}
+
+footer h3 {
+	font-size: 1em;
+	font-weight: bold;
+}
+
+footer p {
+	margin-bottom: 1em;
+}
+
+footer .info-links {
+	text-align: left;
+}
+
+footer .product-links {
+	text-align: left;
+}
+
+footer .social-links a {
+	display: inline-block;
+	font-size: 1.9em;
+	height: 1.3em;
+	line-height: 1.3em;
+	width: 1.3em;
+	margin: 0 0.5em 0 0;
+	border-radius: 6px;
+	text-align: center;
+	color: #999999;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+footer .social-links a:hover {
+	background: rgba(0, 0, 0, 0.12);
+	color: #333333;
+}
+
+footer #contact-form .item {
+	margin-bottom: 0.5em;
+}
+
+footer #contact-form input {
+	width: 100%;
+}
+
+footer #contact-form textarea {
+	width: 100%;
+	height: 6em;
+}
+
+footer #contact-form button {
+	width: 100%;
+}
+
+footer .info-links {
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 1em;
+	line-height: 2em;
+}
+
+footer .info-links a {
+	padding-left: 1em;
+	padding-right: 1em;
+	border-left: 1px solid #999900;
+}
+
+footer .info-links a:nth-child(1) {
+	padding-left: 0;
+	border-left: none;
+}
+
+
+footer .product-links {
+	text-align: center;
+	margin-top: 1em;
+	line-height: 2em;
+}
+
+footer .product-links a {
+	padding-left: 1em;
+	padding-right: 1em;
+	border-left: 1px solid #999900;
+}
+
+footer .product-links a:nth-child(1) {
+	padding-left: 0;
+	border-left: none;
+}
+
+footer .our-partners {
+	text-align: center;
+}

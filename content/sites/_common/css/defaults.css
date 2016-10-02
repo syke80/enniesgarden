@@ -1,0 +1,4 @@
+body { padding: 0px; margin: 0px; font-family: Helvetica; color: rgb(87, 87, 86); font-size: 12px; }
+p { margin: 0px 0px 10px 0px; }
+a { text-decoration: none; }
+.pdf_link { background: url(../images/pdf.png) no-repeat; height: 18px; padding: 8px 0px 6px 38px; display: inline-block; }

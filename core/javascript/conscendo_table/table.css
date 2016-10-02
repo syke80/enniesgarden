@@ -1,0 +1,19 @@
+.conscendo_table { border: 2px solid #0c2963; border-collapse: collapse; }
+.conscendo_table caption { background: url(/core/javascript/conscendo_table/images/title_bg_3.jpg); font-size: 18px; padding: 13px 15px; color: #ffffff; font-weight: bold; text-align: left; }
+.conscendo_table tr th { border: 1px solid #0c2963; padding: 7px; cursor: pointer; border-bottom: 2px solid #0c2963; background-image: linear-gradient(to bottom, #f0f4ff, #ffffff); }
+.conscendo_table td { border: 1px solid #c4ccd7; padding: 5px; background-image: linear-gradient(to bottom, #eaeaec, #e7e6e4); }
+.conscendo_table th .btn_order { boder: 0px none; border-radius: 0; box-shadow: 0px 0px 0px transparent; }
+.conscendo_table th[order=none] .btn_order { background: url(/core/javascript/conscendo_table/order_none.png) top right no-repeat; height: 15px; width: 37px; border: 0px none; }
+.conscendo_table th[order=asc] .btn_order { background: url(/core/javascript/conscendo_table/order_asc.png) top right no-repeat; height: 15px; width: 22px; border: 0px none; }
+.conscendo_table th[order=desc] .btn_order { background: url(/core/javascript/conscendo_table/order_desc.png) top right no-repeat; height: 15px; width: 22px; border: 0px none; }
+.conscendo_table th select { display: block; }
+.conscendo_table tr.mouseover td { background: #eeeeee; }
+.conscendo_navigation { margin-top: 10px; text-align: center; }
+.conscendo_navigation button { margin-right: 10px; font-size: 11px; }
+.conscendo_navigation select { margin-right: 10px; height: 24px; font-size: 14px; }
+
+.conscendo_navigation .btn_first { background: url(/core/javascript/conscendo_table/nav_first.png) top right no-repeat; height: 24px; width: 24px; border: 0px none; }
+.conscendo_navigation .btn_last { background: url(/core/javascript/conscendo_table/nav_last.png) top right no-repeat; height: 24px; width: 24px; border: 0px none; }
+.conscendo_navigation .btn_previous { background: url(/core/javascript/conscendo_table/nav_previous.png) top right no-repeat; height: 24px; width: 24px; border: 0px none; }
+.conscendo_navigation .btn_next { background: url(/core/javascript/conscendo_table/nav_next.png) top right no-repeat; height: 24px; width: 24px; border: 0px none; }
+

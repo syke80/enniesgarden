@@ -1,0 +1,204 @@
+<?php
+class CartModule extends Module {
+	protected function _access($sMethodName) {
+		return TRUE;
+	}
+	
+	public function path() {
+		return array(
+			'cart' => array(
+				'method'      => 'default',
+				'id_language' => 'en',
+			),
+			'en/cart/gadget' => array(
+				'method'      => 'gadget',
+				'id_language' => 'en',
+				'public'      => FALSE,
+			),
+			'kosar' => array(
+				'method'      => 'default',
+				'id_language' => 'hu',
+			),
+			'hu/cart/gadget' => array(
+				'method'      => 'gadget',
+				'id_language' => 'hu',
+				'public'      => FALSE,
+			),
+		);
+	}
+
+	/**
+	 * Rendereli a kosár gadgetet (ami a fejlécben van).
+	 *
+	 * @return string   A gadget tartalma
+	 */
+	protected function _reqGadget() {
+		$iCount = 0;
+		$iTotal = 0;
+		if (isset($_SESSION['cart']['product'])) {
+			foreach ($_SESSION['cart']['product'] as $aItem) {
+				$iCount += $aItem['quantity'];
+				$iTotal += $aItem['total'];
+			}
+		}
+
+		return Output::render('cart_gadget', getLayoutVars() + array(
+			'count' => $iCount,
+			'total' => $iTotal
+		), 'blank');
+	}
+
+	/**
+	 * A termékkel kapcsolatos webszolgáltatások
+	 *   GET    /cart               Rendereli a kosár oldalt (a _page_default() metódus)
+	 *   PUT    /cart               Módosítja egy termék mennyiségét a kosárban
+	 *
+	 * @return string|json          GET esetén a generált oldal tartalma
+	 *                              PUT / POST / DELETE esetén a feldolgozás közben bekövetkező hibák
+	 */
+	protected function _reqDefault() {
+		$aVars = Request::getRequestVars();
+		switch (Request::getRequestMethod()) {
+			case 'GET':
+				return $this->_pageDefault();
+				break;
+			case 'POST':
+				if (array_key_exists('id_product', $aVars) || array_key_exists('id_pack', $aVars)) return $this->_wsInc($aVars);
+				break;
+			case 'PUT':
+				$aRequiredVars1 = array('id_product', 'quantity');
+				$aRequiredVars1 = array('id_pack', 'quantity');
+				if (array_keys_exists($aRequiredVars1, $aVars) || array_keys_exists($aRequiredVars2, $aVars)) return $this->_wsUpdate($aVars);
+				break;
+			case 'DELETE':
+				$aRequiredVars = array('id_product');
+				if (array_key_exists('id_product', $aVars)) return $this->_wsDelete($aVars);
+				break;
+		}
+	}
+
+	/**
+	 * Rendereli a kosár oldalt.
+	 *
+	 * @return string   A generált oldal tartalma
+	 */
+	private function _pageDefault() {
+		$oProductDao =& DaoFactory::getDao('product');
+
+		$iTotal = 0;
+		$aProductList = array();
+		if (isset($_SESSION['cart'])) {
+			$iProductIndex = 0;
+			foreach ($_SESSION['cart'] as $iIdProduct=>$aItem) {
+				$aProductList[$iProductIndex] = $oProductDao->getProductFull($iIdProduct, $GLOBALS['id_language']);
+				$aProductList[$iProductIndex]['quantity'] = $aItem['quantity'];
+				$aProductList[$iProductIndex]['total'] = $aProductList[$iProductIndex]['quantity'] * $aProductList[$iProductIndex]['price'];
+				$iTotal += $aProductList[$iProductIndex]['price'];
+				$iProductIndex++;
+			}
+		}
+
+		return Output::render('cart', getLayoutVars() + array(
+			'id_language' => $GLOBALS['id_language'],
+			'productlist' => $aProductList,
+			'total'       => $iTotal
+		));
+	}
+
+	/**
+	 * Webszolgáltatás, ami a kosárban eggyel növeli egy termék mennyiségét
+	 *
+	 * @param  array    $aVars  A formból beérkező változó: id_product
+	 *
+	 * @return json     A feldolgozás közben bekövetkező hibák
+	 */
+	private function _wsInc($aVars) {
+		$aRes['error'] = array();
+		$oProductDao =& DaoFactory::getDao('product');
+
+		if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
+		
+		// Ha product-ról van szó
+		if (isset($aVars['id_product'])) {
+			if (!isset($_SESSION['cart']['product'])) $_SESSION['cart']['product'] = array();
+			if (!isset($_SESSION['cart']['product'][$aVars['id_product']])) {
+				$_SESSION['cart']['product'][$aVars['id_product']] = array();
+				$_SESSION['cart']['product'][$aVars['id_product']]['quantity'] = 0;
+			}
+			$aProduct = $oProductDao->getProduct($aVars['id_product']);
+			$_SESSION['cart']['product'][$aVars['id_product']]['quantity'] ++;
+			$_SESSION['cart']['product'][$aVars['id_product']]['total'] = $aProduct['price'] * $_SESSION['cart']['product'][$aVars['id_product']]['quantity'];
+		}
+
+		// Ha pack-ról van szó
+		if (isset($aVars['id_pack'])) {
+			if (!isset($_SESSION['cart']['pack'])) $_SESSION['cart']['pack'] = array();
+			if (!isset($_SESSION['cart']['pack'][$aVars['id_pack']])) {
+				$_SESSION['cart']['pack'][$aVars['id_pack']] = array();
+				$_SESSION['cart']['pack'][$aVars['id_pack']]['quantity'] = 0;
+			}
+			$aProduct = $oProductDao->getProduct($aVars['id_pack']);
+			$_SESSION['cart']['pack'][$aVars['id_pack']]['quantity'] ++;
+			$_SESSION['cart']['pack'][$aVars['id_pack']]['total'] = $aProduct['price'] * $_SESSION['cart']['pack'][$aVars['id_pack']]['quantity'];
+		}
+
+		return Output::json($aRes);
+	}
+
+	/**
+	 * Webszolgáltatás, ami módosítja a kosárban egy termék mennyiségét
+	 *
+	 * @param  array    $aVars  A formból beérkező változók:
+	 *                          id_product, quantity
+	 *
+	 * @return json     A feldolgozás közben bekövetkező hibák
+	 */
+	private function _wsUpdate($aVars) {
+		$aVars = cleanValues($aVars);
+		$aRes['error'] = array();
+		$oProductDao =& DaoFactory::getDao('product');
+
+		if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
+
+		// Ha pack-ról van szó
+		if (isset($aVars['id_product'])) {
+			if (!isset($_SESSION['cart'][$aVars['id_product']])) {
+				$_SESSION['cart'][$aVars['id_product']] = array();
+				$_SESSION['cart'][$aVars['id_product']]['quantity'] = $aVars['quantity'];
+			}
+			$aProduct = $oProductDao->getProduct($aVars['id_product']);
+			$_SESSION['cart'][$aVars['id_product']]['quantity'] = $aVars['quantity'];
+			$_SESSION['cart'][$aVars['id_product']]['total'] = $aProduct['price'] * $_SESSION['cart'][$aVars['id_product']]['quantity'];
+		}
+
+		// Ha pack-ról van szó
+		if (isset($aVars['id_pack'])) {
+			if (!isset($_SESSION['cart'][$aVars['id_pack']])) {
+				$_SESSION['cart'][$aVars['id_pack']] = array();
+				$_SESSION['cart'][$aVars['id_pack']]['quantity'] = $aVars['quantity'];
+			}
+			$aProduct = $oProductDao->getProduct($aVars['id_product']);
+			$_SESSION['cart'][$aVars['id_pack']]['quantity'] = $aVars['quantity'];
+			$_SESSION['cart'][$aVars['id_pack']]['total'] = $aProduct['price'] * $_SESSION['cart'][$aVars['id_pack']]['quantity'];
+		}
+	
+		return Output::json($aRes);
+	}
+
+	/**
+	 * Webszolgáltatás, ami töröl egy terméket a kosárból
+	 *
+	 * @param  array    $aVars  A formból beérkező változó:
+	 *                          id_product
+	 *
+	 * @return json     A feldolgozás közben bekövetkező hibák
+	 */
+	private function _wsDelete($aVars) {
+		$aRes['error'] = array();
+		if (isset($_SESSION['cart'][$aVars['id_product']])) unset($_SESSION['cart'][$aVars['id_product']]);
+		// Ha üres a kosár akkor meg kell semmisíteni a változót
+		if (empty($_SESSION['cart'])) unset($_SESSION['cart']);
+		return Output::json($aRes);
+	}
+}
+?>

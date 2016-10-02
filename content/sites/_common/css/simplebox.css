@@ -1,0 +1,29 @@
+.sb_overlay { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #000; filter: alpha(opacity=75); -moz-opacity: 0.75; opacity: 0.75; z-index: 1000; }
+.sb_window { position: fixed; top: 10px; left: 10px; z-index: 1001; padding: 10px; }
+.sb_body { position: relative; overflow: hidden; background: #ffffff; border: 1px solid #000000; border-radius: 20px 0px 20px 20px; } 
+.sb_content { overflow: auto; position: relative; }
+.sb_title { background: #cccccc; padding: 5px 10px; font-weight: bold; display: block; }
+.sb_close { position: absolute; top: -7px; right: -7px; z-index: 1005; background: url(../images/simplebox-close.png); width: 42px; height: 42px; cursor: pointer; }
+.sb_close span { display: none; }
+#sb_loading { position: absolute; z-index: 1010; background: url(../images/loading.gif); width: 208px; height: 13px; }
+
+/*
+.sb_overlay { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #000; filter: alpha(opacity=75); -moz-opacity: 0.75; opacity: 0.75; z-index: 1000; }
+.sb_window { position: fixed; top: 10px; left: 10px; z-index: 1001; padding: 10px; }
+.sb_content { overflow: auto; position: relative; background: #ffffff; border: 1px solid #000000; border-radius: 20px 0px 20px 20px; } 
+.sb_title { background: #cccccc; padding: 5px; display: block; }
+.sb_close { position: absolute; top: -7px; right: -7px; z-index: 1005; background: url(../images/simplebox-close.png); width: 42px; height: 42px; cursor: pointer; }
+.sb_close span { display: none; }
+#sb_loading { position: absolute; z-index: 1010; background: url(../images/loading.gif); width: 208px; height: 13px; }
+*/
+
+
+/*
+.sb_overlay { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: #000; filter: alpha(opacity=75); -moz-opacity: 0.75; opacity: 0.75; z-index: 1000; }
+.sb_window { position: fixed; top: 10px; left: 10px; background: #ffffff; border: 1px solid #000000; z-index: 1001; }
+.sb_content { overflow: auto; position: relative; } 
+.sb_title { background: #cccccc; padding: 5px; display: block; }
+.sb_close { position: absolute; top: 5px; right: 8px; z-index: 1005; }
+.sb_close span { cursor: default; }
+#sb_loading { position: absolute; z-index: 1010; background: url(../images/loading.gif); width: 208px; height: 13px; }
+*/

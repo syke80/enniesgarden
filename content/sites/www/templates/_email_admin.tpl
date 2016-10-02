@@ -1,0 +1,1 @@
+Incoming order. Order id: <% $id_order %>

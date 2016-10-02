@@ -1,0 +1,58 @@
+/*
+.page {  }
+.page h1 { margin-top: 30px; font-size: 34px; line-height: 1.5em; }
+.page h2 { margin-top: 30px; font-size: 22px; line-height: 1.5em; }
+.page p { margin-bottom: 1em; }
+.page div:after { content: "." ; clear: both; display: block; line-height: 0px; font-size: 0; }
+.page ul { margin-top: 10px;  }
+.page ul li { list-style-type: disc; list-style-position: outside; margin-left: 40px; }
+
+aside { display: none; float: left; }
+aside h3 { margin-top: 20px; background: #eeeeee; }
+aside a { color: #58585A; }
+aside p { margin-top: 0px; }
+
+.page div.fw h2 { margin: 0px; background: #eeeeee; color: #58585A; }
+.page div.fw a {color: #58585A; text-decoration: none; }
+.page div.fw img { height: 100%; margin-right: 3%; float: left; }
+
+@media screen and (min-width: 960px) {
+	#content .page { float: none; width: 100%; font-size: 16px; }
+	.page div.fw { height: 150px; width: 100%; margin-bottom: 20px; }
+}
+
+@media screen and (min-width: 1100px) {
+	#content .page { float: left; width: 77%; font-size: 16px; margin-right: 3%; }
+	.page div.fw { height: 150px; width: 49%; float: left; margin-bottom: 20px; }
+	.page div.fw p { margin: 0px; }
+	.page div.fw.odd { margin-right: 2%; }
+	.page_aside { display: block; width: 20%; font-size: 14px; }
+	.page_aside p { font-size: 12px; }
+}
+
+@media screen and (min-width: 1400px) {
+	#content .page { float: left; width: 75%; font-size: 20px; margin-right: 5%; }
+	.page div.fw { height: 150px; width: 49%; float: left; margin-bottom: 20px; }
+	.page div.fw p { margin: 0px; }
+	.page div.fw.odd { margin-right: 2%; }
+	.page_aside { display: block; width: 20%; font-size: 16px; }
+	.page_aside p { font-size: 16px; }
+}
+
+#preview_container { position: absolute; top: 30px; right: 0px; }
+#checkout_preview { width: 510px; }
+#checkout_preview .title { border-bottom: 1px solid #000000; }
+#checkout_preview .title:after { content: "." ; clear: both; display: block; line-height: 0px; font-size: 0; }
+#checkout_preview .title span { display: block; float: left; }
+#checkout_preview .product { width: 240px; }
+#checkout_preview .unit_price { width: 90px; }
+#checkout_preview .quantity { width: 90px; text-align: center; }
+#checkout_preview .price { width: 90px; text-align: right; }
+#checkout_preview ul li:after { content: "." ; clear: both; display: block; line-height: 0px; font-size: 0; }
+#checkout_preview ul li span { display: block; float: left; }
+#checkout_preview .total { text-align: right; border-top: 1px solid #000000; margin-top: 5px; }
+#checkout_preview .shipping { margin-top: 5px; }
+#checkout_preview .shipping:after { content: "." ; clear: both; display: block; line-height: 0px; font-size: 0; }
+#checkout_preview .shipping .name { display: block; float: left; width: 400px; }
+#checkout_preview .shipping .value { display: block; float: left; width: 110px; text-align: right; }
+*/
