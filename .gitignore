@@ -4,3 +4,6 @@ work/
 print/
 import/
 app/
+vendor/
+config.server.php
+sites.php
