@@ -3,7 +3,6 @@
 <form action="<% $siteconfig[site_url] %>/gallery/" class="dropzone" id="my-dropzone">
   <div class="dz-message">
     Drop files here or click to upload.<br />
-    <span class="note">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
   </div>
 </form>
 <div id="imagelist">
